@@ -1,7 +1,17 @@
 package main
 
-import "fmt"
+import (
+	"os"
+
+	"github.com/parinyapt/PT-Friendship_Backend/config"
+)
 
 func main() {
-	fmt.Println("OK")
+	config.FlagSetup()
+	
+	if os.Getenv("DEPLOY_MODE") == "development" {
+		config.EnvironmentFileSetup()
+	}
+	config.EnvironmentVariableCheck()
+	config.TimezoneSetup()
 }
