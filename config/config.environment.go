@@ -17,11 +17,15 @@ func EnvironmentFileSetup() {
 func EnvironmentVariableCheck() {
 	var requireEnvVariableList = []string{
 		"TZ",
+		"DATABASE_MYSQL_HOST",
+		"DATABASE_MYSQL_DBNAME",
+		"DATABASE_MYSQL_USERNAME",
+		"DATABASE_MYSQL_PASSWORD",
 	}
 
 	for _, v := range requireEnvVariableList {
 		if os.Getenv(v) == "" {
-			log.Fatalf("[Error]->Environment Variable ' %s ' is not set", v)
+			log.Fatalf("[Error]->Environment Variable '%s' is not set", v)
 		}
 	}
 }
