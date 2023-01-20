@@ -53,7 +53,7 @@ func Setup() {
 	stop()
 	log.Println("shutting down gracefully, press Ctrl+C again to force")
 
-	// The context is used to inform the server it has 5 seconds to finish
+	// The context is used to inform the server it has 60 seconds to finish
 	// the request it is currently handling
 	ctx, cancel := context.WithTimeout(context.Background(), 60*time.Second)
 	defer cancel()
