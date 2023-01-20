@@ -24,7 +24,7 @@ func EnvironmentVariableCheck() {
 	}
 
 	for _, v := range requireEnvVariableList {
-		if os.Getenv(v) == "" {
+		if len([]byte(os.Getenv(v))) == 0 {
 			log.Fatalf("[Error]->Environment Variable '%s' is not set", v)
 		}
 	}
