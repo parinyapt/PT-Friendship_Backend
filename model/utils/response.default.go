@@ -1,8 +1,8 @@
 package modelUtils
 
 type DefaultResponse struct {
-	ResponseCode          int
-	DefaultResponseDetail DefaultResponseDetail
+	ResponseCode int
+	Detail       DefaultResponseDetail
 }
 
 type DefaultResponseDetail struct {
