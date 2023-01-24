@@ -8,10 +8,10 @@ import (
 	"github.com/parinyapt/PT-Friendship_Backend/model/utils"
 )
 
-func GetStructTag(config modelUtils.GetStructTagParam) (string, error) {
+func GetStructTagValue(config modelUtils.GetStructTagValueParam) (string, error) {
 	field, ok := reflect.TypeOf(config.SelectStruct).FieldByName(config.FieldName)
 	if !ok {
-		return "", errors.New("[ GetStructTag() ]->Reflect Field Error")
+		return "", errors.New("[ GetStructTagValue() ]->Reflect Field Error")
 	}
 
 	return string(field.Tag.Get(config.TagName)), nil

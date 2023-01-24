@@ -1,6 +1,6 @@
 package modelUtils
 
-type GetStructTagParam struct {
+type GetStructTagValueParam struct {
 	SelectStruct interface{}
 	FieldName    string
 	TagName      string

@@ -16,7 +16,7 @@ func ApiInputValidator(c *gin.Context, validateStruct interface{}) (bool, error)
 	if err := validate.Struct(validateStruct); err != nil {
 		var listValidateError []modelUtils.ValidatorErrorFieldListStruct
 		for _, err := range err.(validator.ValidationErrors) {
-			jsonfieldname, errGetStructTag := utils.GetStructTag(modelUtils.GetStructTagParam{
+			jsonfieldname, errGetStructTag := utils.GetStructTagValue(modelUtils.GetStructTagValueParam{
 				SelectStruct: validateStruct,
 				FieldName:    err.Field(),
 				TagName:      "json",
