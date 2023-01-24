@@ -1,6 +1,8 @@
 package utilsValidator
 
 import (
+	"log"
+
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 	"github.com/pkg/errors"
@@ -11,7 +13,7 @@ import (
 	"github.com/parinyapt/PT-Friendship_Backend/utils/response"
 )
 
-func ApiInputValidator(c *gin.Context, validateStruct interface{}) (validatePass bool, validatorError error) {
+func ApiInputValidator(c *gin.Context, validateStruct interface{}) (validatePass bool) {
 	validate := validator.New()
 	if err := validate.Struct(validateStruct); err != nil {
 		var listValidateError []modelUtils.ValidatorErrorFieldListStruct
@@ -25,7 +27,8 @@ func ApiInputValidator(c *gin.Context, validateStruct interface{}) (validatePass
 				utilsResponse.ApiResponse(c, modelUtils.ApiResponseStruct{
 					ResponseCode: 500,
 				})
-				return false, errors.Wrap(errGetStructTagValue, "[ ApiInputValidator() ]->Get Json Field Name Error")
+				log.Printf("[ Error Report ]->Validate Input Fail | [ Error Detail ]->%s", errors.Wrap(errGetStructTagValue, "[ ApiInputValidator() ]->Get Json Field Name Error"))
+				return false
 			}
 			listValidateError = append(listValidateError, modelUtils.ValidatorErrorFieldListStruct{
 				Field:    jsonfieldname,
@@ -39,7 +42,7 @@ func ApiInputValidator(c *gin.Context, validateStruct interface{}) (validatePass
 			ErrorCode: "IIF01",
 			Data:      listValidateError,
 		})
-		return false, nil
+		return false
 	}
-	return true, nil
+	return true
 }
