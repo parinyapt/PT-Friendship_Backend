@@ -11,7 +11,7 @@ import (
 	"github.com/parinyapt/PT-Friendship_Backend/utils/response"
 )
 
-func ApiInputValidator(c *gin.Context, validateStruct interface{}) (bool, error) {
+func ApiInputValidator(c *gin.Context, validateStruct interface{}) (validatePass bool, validatorError error) {
 	validate := validator.New()
 	if err := validate.Struct(validateStruct); err != nil {
 		var listValidateError []modelUtils.ValidatorErrorFieldListStruct
