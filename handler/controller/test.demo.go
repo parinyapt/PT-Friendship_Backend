@@ -1,7 +1,6 @@
 package handler
 
 import (
-	"log"
 
 	"github.com/gin-gonic/gin"
 
@@ -27,10 +26,11 @@ func DemoHandler(c *gin.Context) {
 		return
 	}
 	
-	if validatePass, validatorErr := utilsValidator.ApiInputValidator(c, testInput); !validatePass || validatorErr != nil {
-		if validatorErr != nil {
-			log.Printf("[ Error Report ]->Validate Input Fail\n[ Error Detail ]->%s",validatorErr)
-		}
+	if validatePass := utilsValidator.ApiInputValidator(c, testInput); !validatePass {
+		return
+	}
+
+	if validatePass := utilsValidator.DataValidator(testInput); !validatePass {
 		return
 	}
 	
