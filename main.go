@@ -13,6 +13,9 @@ func main() {
 	if os.Getenv("DEPLOY_MODE") == "development" {
 		config.EnvironmentFileSetup()
 	}
+	if os.Getenv("DEPLOY_MODE") == "production" {
+		config.GinReleaseModeSetup()
+	}
 	config.EnvironmentVariableCheck()
 	config.TimezoneSetup()
 
