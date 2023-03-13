@@ -30,7 +30,11 @@ func Connect() {
 		log.Fatalf("[Error]->Failed to connect database : %s", err)
 	}
 
-	// database.AutoMigrate(&models.{})
+	// database.AutoMigrate(&models.data1{})
+	// err = database.AutoMigrate(&models.Data1{}, &models.Data2{}, &models.Data3{})
+	// if err != nil {
+	// 		log.Fatalf("[Error]->Failed to AutoMigrate database : %s", err)
+	// }
 
 	DB = database
 
